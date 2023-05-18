@@ -44,15 +44,16 @@ player_move_left = [-4, 0]
 
 
 def create_enemy():
-    enemy_size = (30, 30)
+
     enemy = pygame.image.load("materials/enemy.png")
-    enemy_rect = pygame.Rect(WIDTH - 200, random.randint(0, HEIGHT - 200), *enemy_size)
+    enemy_size = enemy.get_size()
+    enemy_rect = pygame.Rect(WIDTH - enemy_size[0], random.randint(0, HEIGHT - enemy_size[0]), *enemy_size)
     enemy_move = [random.randint(-8, -4), 0]
     return [enemy, enemy_rect, enemy_move]
 
 def create_bonus():
-    bonus_size = (25, 25)
     bonus = pygame.image.load("materials/bonus.png")
+    bonus_size = bonus.get_size()
     bonus_rect = pygame.Rect(random.randint(0 + 250, WIDTH - 350), 0, *bonus_size)
     bonus_move = [0, random.randint(4, 8)]
     return [bonus, bonus_rect, bonus_move]
@@ -109,7 +110,7 @@ while playing:
     if keys[K_UP] and player_rect.top > 0:
         player_rect = player_rect.move(player_move_up)
 
-    if keys[K_RIGHT] and player_rect.right > 0:
+    if keys[K_RIGHT] and player_rect.right < WIDTH:
         player_rect = player_rect.move(player_move_right)
 
     if keys[K_LEFT] and player_rect.left > 0:
