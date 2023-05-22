@@ -33,7 +33,7 @@ PLAYER_IMAGES = os.listdir(IMAGE_PASS)
 
 
 
-player_size = (20, 20)
+player_size = (20, 40)
 player = pygame.image.load("materials/player.png")
 player_rect = player.get_rect()
 player_rect.y = 300
